@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend tests and migrations
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      APP_ENV: test
+      AUTH_SECRET: ci-only-auth-secret-that-is-never-used
+      AUTH_DELIVERY_MODE: development
+      AUTH_COOKIE_SECURE: "false"
+      AUTH_ALLOW_DEMO_HEADER: "true"
+      SEED_DEMO_ENABLED: "false"
+      UPLOAD_MALWARE_SCAN_MODE: disabled
+      DATABASE_URL: sqlite:///${{ runner.temp }}/runtime-ci.db
+      UPLOAD_DIR: ${{ runner.temp }}/uploads
+      EXPORT_DIR: ${{ runner.temp }}/exports
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install backend dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Run backend tests
+        run: python -m pytest
+
+      - name: Compile backend sources
+        run: python -m compileall -q app alembic *.py
+
+      - name: Upgrade an empty database and verify Alembic head
+        run: |
+          migration_database_url="sqlite:///${RUNNER_TEMP}/alembic-ci.db"
+          DATABASE_URL="${migration_database_url}" alembic upgrade head
+          DATABASE_URL="${migration_database_url}" alembic current
+          DATABASE_URL="${migration_database_url}" alembic check
+
+  frontend:
+    name: Frontend tests and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    env:
+      BACKEND_URL: http://127.0.0.1:8001
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Run frontend tests
+        run: npm test
+
+      - name: Check frontend types
+        run: npm run typecheck
+
+      - name: Lint frontend sources
+        run: npm run lint
+
+      - name: Build frontend
+        run: npm run build

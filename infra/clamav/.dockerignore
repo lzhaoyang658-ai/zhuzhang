@@ -1,0 +1,7 @@
+*
+!Dockerfile
+!clamd.conf
+!freshclam.conf
+!healthcheck.sh
+!reload-clamd.sh
+!start-clamav.sh

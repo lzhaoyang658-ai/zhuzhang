@@ -1,0 +1,12 @@
+.env
+.env.*
+.venv/
+.vefaas/
+data/
+tests/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.db
+*.sqlite*
+.DS_Store

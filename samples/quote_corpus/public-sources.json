@@ -1,0 +1,33 @@
+{
+  "captured_on": "2026-08-30",
+  "sources": [
+    {
+      "id": "yueyang-home-decoration-contract-template",
+      "publisher": "岳阳市人民政府",
+      "url": "https://www.yueyang.gov.cn/web/uploadfiles/202505/2025050911571841141.pdf",
+      "sha256": "28a3115197c695a26e5a3b3f12c39b204a362aa0d02e1ed6062b1060ee642b44",
+      "pages": 24,
+      "kind": "text_pdf",
+      "notes": "第 15 个 PDF 页面含空白家庭居室装饰装修工程报价单。"
+    },
+    {
+      "id": "qingdao-home-decoration-contract-template",
+      "publisher": "青岛市市场监督管理局等",
+      "url": "https://amr.qingdao.gov.cn/zwgk/tzgg/202312/P020231116616186308193.pdf",
+      "sha256": "5a9bed6f9386da1effcf7c0406f2bd4e70a1e2beb6bb61285d032d2b6869facd",
+      "pages": 11,
+      "kind": "text_pdf",
+      "notes": "使用说明明确预算报价应包含材料、品牌、规格、数量、单价、损耗、工艺和施工费用标准。"
+    },
+    {
+      "id": "longgang-office-renovation-boq",
+      "publisher": "深圳市龙岗区人民政府",
+      "page_url": "https://www.lg.gov.cn/gab/tzgg/content/post_12683863.html",
+      "url": "https://www.lg.gov.cn/attachment/1/1693/1693117/12683863.pdf",
+      "sha256": "6249c49c39c51a56fe148c017c26c6b90986099dc00116635fc98e5313ec3047",
+      "pages": 27,
+      "kind": "scanned_pdf",
+      "notes": "公开招标控制价清单；本地鲁棒性测试使用，不复制到演示数据。"
+    }
+  ]
+}

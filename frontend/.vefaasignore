@@ -1,0 +1,10 @@
+.env
+.env.*
+.vefaas/
+/node_modules/
+.next/cache/
+.next/dev/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+.DS_Store
