@@ -9,7 +9,7 @@ openpyxl==3.1.5
 reportlab==4.4.1
 pypdf==6.16.1
 pdfplumber==0.11.7
-PyMuPDF==1.26.4
+PyMuPDF==1.28.2
 Pillow==12.3.0
 boto3==1.43.83
 psycopg[binary]==3.3.4
