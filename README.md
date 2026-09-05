@@ -54,7 +54,7 @@
 macOS 与 Linux
 
 ```bash
-git clone <repository-url> zhuzhang
+git clone https://github.com/lzhaoyang658-ai/zhuzhang.git zhuzhang
 cd zhuzhang
 cp .env.example .env
 ```
@@ -62,7 +62,7 @@ cp .env.example .env
 Windows PowerShell
 
 ```powershell
-git clone <repository-url> zhuzhang
+git clone https://github.com/lzhaoyang658-ai/zhuzhang.git zhuzhang
 cd zhuzhang
 Copy-Item .env.example .env
 ```
