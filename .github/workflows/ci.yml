@@ -27,9 +27,9 @@ jobs:
       AUTH_ALLOW_DEMO_HEADER: "true"
       SEED_DEMO_ENABLED: "false"
       UPLOAD_MALWARE_SCAN_MODE: disabled
-      DATABASE_URL: sqlite:///${{ runner.temp }}/runtime-ci.db
-      UPLOAD_DIR: ${{ runner.temp }}/uploads
-      EXPORT_DIR: ${{ runner.temp }}/exports
+      DATABASE_URL: sqlite:///./data/runtime-ci.db
+      UPLOAD_DIR: ./data/uploads
+      EXPORT_DIR: ./data/exports
 
     steps:
       - name: Check out repository
